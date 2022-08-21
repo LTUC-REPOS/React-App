@@ -6,8 +6,7 @@ class HornedBeast extends react.Component         {
         return(
             <div>
                 <h2>The Blue Whale</h2>
-                <img src="https://adminassets.devops.arabiaweather.com/sites/default/files/p02x4gs5.jpg" alt="Blue Whale" title="This image for blue whale"/>
-                
+                <img src="https://adminassets.devops.arabiaweather.com/sites/default/files/p02x4gs5.jpg" alt="Blue Whale" title="This image for blue whale"/>                
                 <p>This Largest creature in the world</p>
             </div>
         );

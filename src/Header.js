@@ -5,10 +5,11 @@ class Header extends react.Component {
     render ()
     {
         return(
-        <div>
+        <div className="headerContainer">
             <h1>This is Header</h1>
         </div>
         );
     }
+    
 }
 export default Header;
