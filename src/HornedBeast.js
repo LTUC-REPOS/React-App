@@ -1,7 +1,6 @@
 
-import react from "react";
-
-class HornedBeast extends react.Component         {
+import React, { Component }  from 'react';
+class HornedBeast extends Component       {
     render(){
         return(
             <div>

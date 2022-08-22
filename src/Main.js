@@ -1,6 +1,6 @@
-import react from "react";
+import React, { Component }  from 'react';
 import HornedBeast from "./HornedBeast";
-class Main extends react.Component {
+class Main extends Component {
 
         obj = 
 [{
@@ -33,6 +33,10 @@ class Main extends react.Component {
 
 
     render() {
+ 
+        
+
+
         return (
             <div>
                 <style jsx>
@@ -44,8 +48,10 @@ class Main extends react.Component {
                     }`
                 }   
                 </style>
-               
-                {   this.obj.map(i => <HornedBeast link={i.image_url} alt={i.keyword} title = {i.title} desc={i.description} /> )}
+                
+                {   this.obj.map(i => <HornedBeast link={i.image_url} alt={i.keyword} title = {i.title} desc={i.description} /> )
+                    
+                }
                 
             </div>
         )

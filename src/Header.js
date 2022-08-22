@@ -1,6 +1,6 @@
-import  react from "react";
+import React, { Component }  from 'react';
 
-class Header extends react.Component {
+class Header extends Component {
 
     render ()
     {
