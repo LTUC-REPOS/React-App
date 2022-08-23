@@ -1,79 +1,47 @@
 import React, { Component } from "react";
-import Card from './Cards'
-import Data from './BeastsData.json';
+import Card from "./Cards";
+import Data from "./BeastsData.json";
+import { BSCard, Button, CardGroup } from "react-bootstrap";
 
 class CardsContainer extends Component {
-/*
-_id: 1
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
 
-description: "A unicorn and a narwhal nuzzling their horns"
-​​
-horns: 1
-​​
-image_url: "http://3.bp.blogspot.com/_DBYF1AdFaHw/TE-f0cDQ24I/AAAAAAAACZg/l-FdTZ6M7z8/s1600/Unicorn_and_Narwhal_by_dinglehopper.jpg"
-​​
-keyword: "narwhal"
-​​
-title: "UniWhal"
+  render() {
+    let cardsArray = this.props.jsonData.map((i) => {
+      return (
+        <Card
+          image_url={i.image_url}
+          description={i.description}
+          title={i.title}
+          horns={i.horns}
+          ModalData={this.props.ModalData}
+        />
+      );
+    });
 
-*/
+    let cardsInRow = 3;
+    let NumberOfRows = Math.ceil(cardsArray.length / cardsInRow);
 
+    let counter = 0;
+    let rows = [];
 
-
-   
-    InitRows = () => {
-
-        
-    // console.log(Data);
-
-    // let rows = [];
-    //  for (let i = 0; i < 5; i++) { // 5 rows
-    //    let childs =[]
-    //     for (const beast in Data) {
-                 
-    //           childs.push();             
-    //         }
-    //     }
-    //     let div = react.createElement('div',{class:"cardsContainer"})  
-    //  }
-
-
-
-    //   //  React.createElement('div',{class:"cardsContainer"} , <Card/> )
-            
-    // }    
-        
+    for (let j = 0; j < NumberOfRows; j++) {
+      let tempRow = [];
+      for (let i = 0; i < cardsInRow; i++) {
+        // 0 => 4
+        tempRow.push(cardsArray[counter]);
+        counter++;
+      }
+      rows.push(
+        React.createElement("div", { class: "cardsContainer" }, tempRow)
+      );
     }
 
-
-/*
-
-                <img src={this.props.image_url} alt={this.props.description} 
-                title={this.props.title} 
-                onClick={()=>{alert("you clicked on "+ this.props.title + " image")}}/>
-
-                <h3>{this.props.description}</h3>
-                <h3>{this.props.horns}</h3>
-*/
-
-    // rows are filled with cards
-    render() {
-        //this.InitRows()
-        return (
-            <div className={"mainContainer"} >
-                {
-                    Data.map(i => 
-                    <Card image_url ={i.image_url} 
-                    description = {i.description}
-                    title = {i.title}
-                    horns = {i.horns}
-                    />  )   
-                }
-            </div>
-
-        );
-    }
-
+    return <div className={"mainContainer"}>{rows}</div>;
+  }
 }
 
-export default CardsContainer
+export default CardsContainer;
