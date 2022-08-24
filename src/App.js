@@ -31,7 +31,7 @@ class App extends Component {
   selectorHandler = (hornsValue) => {
     let newData = Data;
 
-    if (hornsValue !== parseInt(0))
+    if (0 !== parseInt(hornsValue))
       newData = Data.filter((i) => i.horns === parseInt(hornsValue));
 
     this.setState({
