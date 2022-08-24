@@ -5,11 +5,12 @@ import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
 import Data from "./Components/BeastsData.json";
+import Forms from "./Components/Forms";
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { isClicked: false };
+    this.state = { isClicked: false, selectedOption: null, RenderData: null };
   }
 
   GetModalData = (image_url, description, title, horns, clicked) => {
@@ -20,13 +21,19 @@ class App extends Component {
       horns: horns,
       isClicked: clicked,
     });
-
-    console.log("Inside GetModalData");
-    console.log(this.state);
   };
   ToggleShow = () => {
     this.setState({
       isClicked: !this.state.isClicked,
+    });
+  };
+
+  selectorHandler = (hornsValue) => {
+    let newData = Data.filter((i) => i.horns === parseInt(hornsValue));
+
+    this.setState({
+      selectedOption: hornsValue,
+      RenderData: newData,
     });
   };
 
@@ -41,7 +48,13 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <Main jsonData={Data} ModalData={this.GetModalData} />
+        <Forms selectorHandler={this.selectorHandler} />
+        <Main
+          jsonData={
+            this.state.RenderData == null ? Data : this.state.RenderData
+          }
+          ModalData={this.GetModalData}
+        />
         <Footer />
         {this.Modal()}
       </div>
