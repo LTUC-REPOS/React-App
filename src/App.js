@@ -9,15 +9,7 @@ import Data from "./Components/BeastsData.json";
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      img: this.props.image_url,
-      desc: this.props.description,
-      title: this.props.title,
-      horns: this.props.horns,
-      isClicked: true,
-    };
-
-    this.ToggleShow = this.ToggleShow.bind(this);
+    this.state = { isClicked: false };
   }
 
   GetModalData = (image_url, description, title, horns, clicked) => {
@@ -26,29 +18,32 @@ class App extends Component {
       desc: description,
       title: title,
       horns: horns,
-      isClicked: false,
+      isClicked: clicked,
     });
 
     console.log("Inside GetModalData");
     console.log(this.state);
   };
-  ToggleShow = (show) => {
+  ToggleShow = () => {
     this.setState({
-      isClicked: true,
+      isClicked: !this.state.isClicked,
     });
   };
 
+  Modal = () => {
+    return <SelectedBeast toggle={this.ToggleShow} CardData={this.state} />;
+  };
+
   render() {
+    console.log("Inside App Render");
+    console.log(this.state);
+
     return (
       <div className="App">
         <Header />
         <Main jsonData={Data} ModalData={this.GetModalData} />
         <Footer />
-        <SelectedBeast
-          CardData={this.state}
-          toggleModal={this.state.isClicked}
-          fn={this.ToggleShow}
-        />
+        {this.Modal()}
       </div>
     );
   }

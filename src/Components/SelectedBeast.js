@@ -2,35 +2,55 @@ import React from "react";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import Modal from "react-bootstrap/Modal";
+import Cards from "./Cards";
+import { Card, Button, CardGroup } from "react-bootstrap";
+import ListGroup from "react-bootstrap/ListGroup";
 
 class SelectedBeast extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      show: this.props.toggleModal,
+      show: this.props.CardData.isClicked,
     };
   }
 
   Hide = () => {
-    console.log("Before Hide" + this.state.show);
-    this.props.fn(false);
+    this.props.CardData.isClicked = false;
     this.setState({
-      show: false,
+      show: true,
     });
-
-    console.log("after Hide" + this.state.show);
   };
 
   render() {
-    console.log("render " + this.state.show);
-    if (this.props.toggleModal) {
-      this.setState({
-        show: true,
-      });
-    }
+    return (
+      <Modal
+        show={this.props.CardData.isClicked}
+        onHide={this.Hide}
+        dialogClassName="modal-90w"
+        aria-labelledby="example-custom-modal-styling-title"
+        style={{ fontSize: "32px", textAlign: "center" }}
+      >
+        <Modal.Header closeButton></Modal.Header>
+        <Modal.Title id="example-custom-modal-styling-title">
+          <h1>{this.props.CardData.title}</h1>
+        </Modal.Title>
+        <Modal.Body>
+          <span>
+            <img
+              style={{ width: "100%" }}
+              variant="top"
+              src={this.props.CardData.img}
+              alt={this.props.CardData.desc}
+              title={this.props.CardData.title}
+            />
 
-    return <h1>{"yes " + this.props.title}</h1>;
+            <h2> Description : {this.props.CardData.desc}</h2>
+            <h2> Horns : {this.props.CardData.horns}</h2>
+          </span>
+        </Modal.Body>
+      </Modal>
+    );
   }
 }
 export default SelectedBeast;
